@@ -1,0 +1,25 @@
+[PrefixDeclaration]
+:		    http://example.org/trydb_kg/
+data:		http://example.org/trydb_data/
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+xml:		http://www.w3.org/XML/1998/namespace
+owl:		http://www.w3.org/2002/07/owl#
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+
+[MappingDeclaration] @collection [[
+mappingId	MAPPING-ID1
+target		:try1/{AccSpeciesID} a :AccSpeciesID ; :LastName {LastName}^^xsd:string ; :FirstName {FirstName}^^xsd:string ; :DatasetID {DatasetID}^^xsd:string ; :Dataset {Dataset}^^xsd:string ; :SpeciesName {SpeciesName}^^xsd:string ; :AccSpeciesName {AccSpeciesName}^^xsd:string ; :hasTraitID :try1/{TraitID} ; :hasObservationID :try1/{ObservationID} ; :hasObsDataID :try1/{ObsDataID} ; :TraitName {TraitName}^^xsd:string ; :hasDataID :try1/{DataID} ; :DataName {DataName}^^xsd:string ; :OriglName {OriglName}^^xsd:string ; :OrigValueStr {OrigValueStr}^^xsd:string ; :OrigUnitStr {OrigUnitStr}^^xsd:string ; :ValueKindName {ValueKindName}^^xsd:string ; :OrigUncertaintyStr {OrigUncertaintyStr}^^xsd:string ; :UncertaintyName {UncertaintyName}^^xsd:string ; :Replicates {Replicates}^^xsd:string ; :StdValue {StdValue}^^xsd:string ; :UnitName {UnitName}^^xsd:string ; :RelUncertaintyPercent {RelUncertaintyPercent}^^xsd:string ; :OrigObsDataID {OrigObsDataID}^^xsd:string ; :ErrorRisk {ErrorRisk}^^xsd:string ; :Reference {Reference}^^xsd:string ; :Comment {Comment}^^xsd:string ; :StdValueStr {StdValueStr}^^xsd:string . 
+source		SELECT AccSpeciesID, LastName, FirstName, DatasetID, Dataset, SpeciesName, AccSpeciesName, TraitID, ObservationID, ObsDataID, TraitName, DataID, DataName, OriglName, OrigValueStr, OrigUnitStr, ValueKindName, OrigUncertaintyStr, UncertaintyName, Replicates, StdValue, UnitName, RelUncertaintyPercent, OrigObsDataID, ErrorRisk, Reference, Comment, StdValueStr FROM "trydbAll";
+
+mappingId	MAPPING-ID2
+target		:tax1/{wikidata_id} a :wd_id ; :TRY_SpeciesID {TRY_SpeciesID}^^xsd:string ; :TRY_SpeciesName {TRY_SpeciesName}^^xsd:string ; :TRY_AccSpeciesName {TRY_AccSpeciesName}^^xsd:string ; :TRY_AccSpeciesNameScientific {TRY_AccSpeciesNameScientific}^^xsd:string ;  :BackboneDatabase {BackboneDatabase}^^xsd:string ; :Genus {Genus}^^xsd:string ; :Family {Family}^^xsd:string; :NameUsedForFuzzyMatching {NameUsedForFuzzyMatching}^^xsd:string; :MatchedName {MatchedName}^^xsd:string; :RecommendedScientificName {RecommendedScientificName}^^xsd:string; :Reference {Reference}^^xsd:string; :DiffGen {DiffGen}^^xsd:string; :DiffSpec {DiffSpec}^^xsd:string; :SelectReason {SelectReason}^^xsd:string; :AlternativeName {AlternativeName}^^xsd:string; :rank_id {rank_id}^^xsd:string; :parent_id {parent_id}^^xsd:string; :hasNcbiID :tax1/{ncbi_id} ; :hasGbifID :tax1/{gbif_id} ; :hasOttID :tax1/{ott_id} ; :hasAccSpeciesID :try1/{AccSpeciesID} . 
+source		SELECT wikidata_id, TRY_SpeciesID, TRY_SpeciesName, TRY_AccSpeciesName, TRY_AccSpeciesNameScientific, BackboneDatabase, Genus, Family, NameUsedForFuzzyMatching, MatchedName, RecommendedScientificName, Reference, DiffGen, DiffSpec, SelectReason, AlternativeName, rank_id, parent_id, ncbi_id, gbif_id, ott_id, AccSpeciesID  FROM "taxonomy";
+
+mappingId	MAPPING-ID3
+target		:try1/{tr_AccSpeciesID} :hasOttID :{tax_ott_id}; :hasNcbiID :{tax_ncbi_id}; :hasGbifID :{tax_gbif_id}; :hasWdID :{tax_wikidata_id} .
+source		SELECT tr_AccSpeciesID, tax_ott_id, tax_ncbi_id, tax_gbif_id, tax_wikidata_id FROM lenses.try_tax;
+
+]]
+

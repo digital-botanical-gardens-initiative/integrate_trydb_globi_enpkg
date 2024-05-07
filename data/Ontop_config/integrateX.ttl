@@ -1,0 +1,303 @@
+@prefix : <http://example.org/trydb_kg/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.org/trydb_kg/> rdf:type owl:Ontology .
+
+######the following was not given by the default output of 'ontology bootstrap'
+#################################################################
+#    Object properties
+#################################################################
+### the following has been added for the lenses (join between taxonomy and trydbAll)
+
+:hasTraitID rdf:type owl:ObjectProperty ;
+	    rdfs:domain :AccSpeciesID ;
+            rdfs:range :TraitID .
+
+
+:hasObsDataID rdf:type owl:ObjectProperty ;
+	      rdfs:domain :AccSpeciesID ;
+              rdfs:range :ObsDataID .
+
+	
+:hasObservationID rdf:type owl:ObjectProperty ;
+	      	  rdfs:domain :AccSpeciesID ;
+        	  rdfs:range :ObservationID .
+
+	
+:hasDataID rdf:type owl:ObjectProperty ;
+           rdfs:domain :AccSpeciesID ;
+           rdfs:range :DataID .
+
+:hasAccSpeciesID rdf:type owl:ObjectProperty ;
+		 rdfs:domain :wd_id ;
+	         rdfs:range :AccSpeciesID .
+
+	
+:hasOttID rdf:type owl:ObjectProperty .
+ 	#  rdfs:domain :AccSpeciesID ;
+        #  rdfs:range :ott_id .
+
+	
+:hasNcbiID rdf:type owl:ObjectProperty .
+ 	#   rdfs:domain :AccSpeciesID ;
+        #   rdfs:range :ncbi_id .
+
+	
+:hasGbifID rdf:type owl:ObjectProperty .
+  	#   rdfs:domain :AccSpeciesID ;
+        #   rdfs:range :gbif_id .
+
+	
+:hasWdID rdf:type owl:ObjectProperty .
+ 	# rdfs:domain :AccSpeciesID ;
+        # rdfs:range :wd_id .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/trydb_kg/trydball#<attribute-name>
+:AccSpeciesID rdf:type owl:Class .
+:TraitID rdf:type owl:Class .
+:ObsDataID rdf:type owl:Class .
+:ObservationID rdf:type owl:Class .
+:DataID rdf:type owl:Class .
+
+###  http://example.org/taxonomy#<attribute-name>
+:gbif_id rdf:type owl:Class .
+:ncbi_id rdf:type owl:Class .
+:ott_id rdf:type owl:Class .
+##Note: there is a wd_taxon_id as the datatype property. What to do with that?
+:wd_id rdf:type owl:Class . 
+
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###### the following are modified from the default ontology retrieved from 'ontop bootstrap'
+
+###  http://example.org/taxonomy#Family
+:Family rdf:type owl:DatatypeProperty ;
+	rdfs:domain :wd_id ;
+        rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#Genus
+:Genus rdf:type owl:DatatypeProperty ;
+       rdfs:domain :wd_id ;
+       rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#TraitName
+:TraitName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :TraitID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#DataName
+:DataName rdf:type owl:DatatypeProperty ;
+          rdfs:domain :DataID ;
+          rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#TRY_AccSpeciesName
+#:TRY_AccSpeciesName rdf:type owl:DatatypeProperty ;
+#          	    rdfs:domain :AccSpeciesID ;
+#	            rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#AccSpeciesName
+:AccSpeciesName rdf:type owl:DatatypeProperty ;
+          	rdfs:domain :AccSpeciesID ;
+	        rdfs:range rdfs:Literal .
+
+
+
+###### the following are from the default output of 'ontop bootstrap' command
+
+###  http://example.org/taxonomy#AlternativeName
+:AlternativeName rdf:type owl:DatatypeProperty ;
+		 rdfs:domain :wd_id ;
+	         rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#BackboneDatabase
+:BackboneDatabase rdf:type owl:DatatypeProperty ;
+		  rdfs:domain :wd_id ;
+	          rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#DiffGen
+:DiffGen rdf:type owl:DatatypeProperty ;
+	 rdfs:domain :wd_id ;
+         rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#DiffSpec
+:DiffSpec rdf:type owl:DatatypeProperty ;
+	  rdfs:domain :wd_id ;
+          rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#MatchedName
+:MatchedName rdf:type owl:DatatypeProperty ;
+	     rdfs:domain :wd_id ;
+             rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#NameUsedForFuzzyMatching
+:NameUsedForFuzzyMatching rdf:type owl:DatatypeProperty ;
+	  		  rdfs:domain :wd_id ;
+		          rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#RecommendedScientificName
+:RecommendedScientificName rdf:type owl:DatatypeProperty ;
+	  		   rdfs:domain :wd_id ;	
+			   rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#Reference
+:Reference rdf:type owl:DatatypeProperty ;
+ 	   rdfs:domain :wd_id ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#SNo
+:SNo rdf:type owl:DatatypeProperty ;
+     rdfs:domain :wd_id ;
+     rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#SelectReason
+:SelectReason rdf:type owl:DatatypeProperty ;
+	      rdfs:domain :wd_id ;
+              rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#TRY_AccSpeciesNameScientific
+:TRY_AccSpeciesNameScientific rdf:type owl:DatatypeProperty ;
+	  		      rdfs:domain :wd_id ;
+		              rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#TRY_SpeciesID
+:TRY_SpeciesID rdf:type owl:DatatypeProperty ;
+	       rdfs:domain :wd_id ;
+               rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#TRY_SpeciesName
+:TRY_SpeciesName rdf:type owl:DatatypeProperty ;
+	  	 rdfs:domain :wd_id ;
+	         rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#parent_id
+:parent_id rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :wd_id ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/taxonomy#rank_id
+:rank_id rdf:type owl:DatatypeProperty ;
+	 rdfs:domain :wd_id ;
+         rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#Comment
+:Comment rdf:type owl:DatatypeProperty ;
+	 rdfs:domain :AccSpeciesID ;
+         rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#Dataset
+:Dataset rdf:type owl:DatatypeProperty ;
+	 rdfs:domain :AccSpeciesID ;
+         rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#DatasetID
+:DatasetID rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :AccSpeciesID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#ErrorRisk
+:ErrorRisk rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :AccSpeciesID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#FirstName
+:FirstName rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :AccSpeciesID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#LastName
+:LastName rdf:type owl:DatatypeProperty ;
+	  rdfs:domain :AccSpeciesID ;
+          rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#OrigObsDataID
+:OrigObsDataID rdf:type owl:DatatypeProperty ;
+	       rdfs:domain :AccSpeciesID ;
+               rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#OrigUncertaintyStr
+:OrigUncertaintyStr rdf:type owl:DatatypeProperty ;
+	 	    rdfs:domain :AccSpeciesID ;
+                    rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#OrigUnitStr
+:OrigUnitStr rdf:type owl:DatatypeProperty ;
+	     rdfs:domain :AccSpeciesID ;
+             rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#OrigValueStr
+:OrigValueStr rdf:type owl:DatatypeProperty ;
+	      rdfs:domain :AccSpeciesID ;
+	      rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#OriglName
+:OriglName rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :AccSpeciesID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#Reference
+:Reference rdf:type owl:DatatypeProperty ;
+	   rdfs:domain :AccSpeciesID ;
+           rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#RelUncertaintyPercent
+:RelUncertaintyPercent rdf:type owl:DatatypeProperty ;
+	 	       rdfs:domain :AccSpeciesID ;
+                       rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#Replicates
+:Replicates rdf:type owl:DatatypeProperty ;
+	    rdfs:domain :AccSpeciesID ;
+            rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#SpeciesName
+:SpeciesName rdf:type owl:DatatypeProperty ;
+	     rdfs:domain :AccSpeciesID ;
+             rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#StdValue
+:StdValue rdf:type owl:DatatypeProperty ;
+	  rdfs:domain :AccSpeciesID ;
+          rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#StdValueStr
+:StdValueStr rdf:type owl:DatatypeProperty ;
+	     rdfs:domain :AccSpeciesID ;
+             rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#UncertaintyName
+:UncertaintyName rdf:type owl:DatatypeProperty ;
+	         rdfs:domain :AccSpeciesID ;
+                 rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#UnitName
+:UnitName rdf:type owl:DatatypeProperty ;
+	  rdfs:domain :AccSpeciesID ;
+          rdfs:range rdfs:Literal .
+
+###  http://example.org/trydbAll#ValueKindName
+:ValueKindName rdf:type owl:DatatypeProperty ;
+	       rdfs:domain :AccSpeciesID ;
+               rdfs:range rdfs:Literal .
+
+
+
+
+
+
+### the following has been manually added for the enpkg schema
+
+
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi

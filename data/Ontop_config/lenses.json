@@ -1,0 +1,41 @@
+{
+    "relations": [
+        {
+            "name": ["lenses", "try_tax"],
+            "join": {
+                "relations": [
+                    ["trydbAll"],
+                    ["taxonomy"]
+                ],
+                "columnPrefixes": [
+                    "tr_",
+                    "tax_"
+                ]
+            },
+            "columns": {
+                "added": [],
+                "hidden": [
+			"tr_LastName", 
+			"tr_FirstName", 
+			"tr_OrigUncertaintyStr", 
+			"tr_UncertaintyName", 
+			"tr_RelUncertaintyPercent", 
+			"tr_OrigObsDataID", 
+			"tr_ErrorRisk", 
+			"tr_Comment", 
+			"tr_StdValueStr",
+			"tax_SNo", 
+			"tax_NameUsedForFuzzyMatching",
+			"tax_MatchedName",
+			"tax_RecommendedScientificName", 
+			"tax_DiffGen", 
+			"tax_DiffSpec", 
+			"tax_SelectReason", 
+			"tax_AlternativeName"
+                ]
+            },
+            "filterExpression": "tr_AccSpeciesName = tax_TRY_AccSpeciesName",
+            "type": "JoinLens"
+         }
+     ]
+}
