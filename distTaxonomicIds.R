@@ -9,7 +9,7 @@ library(ggplot2)
 
 #args <- commandArgs(trailingOnly=TRUE)
 #file <- args[1]
-file <- "data/trydbtemp_Ontop/taxonomy.csv"
+file <- "data/duckdb_input/taxonomy.csv"
 
 #Tip: read.csv always works with csv files. read.table is tricky to use with csv files, because of its weird behaviour for treating quotes. Even after changing the quotes to the desired beahviour, it didn't wrk with read.table. csv files are preferred in this case because there are full citations inside the document.
 tax <- read.csv(file, sep=",", header=TRUE, row.names = NULL) 
