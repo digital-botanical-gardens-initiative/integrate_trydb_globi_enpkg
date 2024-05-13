@@ -1,7 +1,7 @@
 This repository contains scripts for integrating species and subsequent traits data from trydb with taxonomic ids from gbif, otol, ncbi and wikidata. At the moment, data for only 25 traits was downloaded from TRY-db. Subsequently, the traits metadata was retrieved from TRY-db website and a subset of enpkg was also retrieved. The csv files retrieved were converted to duckdb (adavantge: on-disk approach for sql queries). 
 
 The TRY-db dataset with 25 traits has multiple columns ('data/trydbtemp_Ontop/trydbAll.csv'). These columns have a complex relationship as depicted in the diagram below.
-![TryDbAll_relationsExplained2 (3)](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/assets/49712124/577737d4-edbf-4590-8078-73d661af80a5)
+![TryDbAll_relationsExplained](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/TryDbAll_relationsExplained_20240502.png?raw=true)
 
 
 NOTE: the trydbAll table containing the datasets from the TRY-db is a subset of the actual data.
@@ -47,7 +47,7 @@ To plot distribution of the TRY-db species matched with ids from ott, ncbi, gbif
 `sh run_duckdb.sh`
 
 The relations between tables are depicted in the following minimal ER diagram. The full diagram can be found in the file 'figures/TableRelations_ER_diagram_full.png'
-![TableRelations_truncated_20240427](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/assets/49712124/7d882725-9b82-4ae1-8b58-ec62886bac98)
+![TableRelations_truncated_20240513](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/TableRelations_truncated_diagram.png?raw=true)
 
 
 
