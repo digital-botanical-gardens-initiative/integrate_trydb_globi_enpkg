@@ -37,7 +37,7 @@ To plot distribution of the TRY-db species matched with ids from ott, ncbi, gbif
 
 `Rscript distTaxonomicIds.R`
 
-![distributionDB](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/tree/master/figures/distributionDB.png?raw=true)
+![distributionDB](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/distributionDB.png?raw=true)
 
 
 **III. Script to build a duckdb database for Ontop and build the knowledge graph**
