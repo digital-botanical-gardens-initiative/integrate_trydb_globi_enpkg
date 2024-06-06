@@ -17,7 +17,3 @@ TAXON:
 W:
 WD:
 WORMS:
-http://id.biodiversity.org.au/
-http://openbiodiv.net/
-http://treatment.plazi.org/
-http://www.boldsystems.org/

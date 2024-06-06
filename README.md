@@ -1,6 +1,6 @@
 This repository contains scripts for integrating species and subsequent traits data from trydb with taxonomic ids from gbif, otol, ncbi and wikidata. Data for only 25 traits was downloaded from TRY-db. Subsequently, the traits metadata was retrieved from TRY-db website and a subset of enpkg was also retrieved. The csv file for interactions was retrieved from [GLOBI database](https://www.globalbioticinteractions.org/data). The csv files retrieved were converted to duckdb (adavantge: on-disk approach for sql queries). 
 
-Download the datasets used in this repo from [zenodo](https://zenodo.org/doi/10.5281/zenodo.11186592).
+Download the datasets used in this repo from [zenodo](https://zenodo.org/doi/10.5281/zenodo.11186592). Merge them with the data folder in this repo.
 
 The TRY-db dataset with 25 traits has multiple columns, which are related as depicted in the diagram below.
 ![TryDbAll_relationsExplained](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/TryDbAll_relationsExplained_20240502.png?raw=true)
@@ -28,11 +28,16 @@ For smooth running of the scripts (R,shell), install R (version 4.1.2) and the f
 
 
 
-**II. Script to map the TRY plant species name to the gbif, ncbi, wikidata and otol ids**
+**II. Script to map the TRY plant species name to the gbif, ncbi, wikidata ids**
+
+Taxonomy mapping of the plant species name in the TRY-db were done using the [taxizedb R-package](https://ropensci.github.io/taxizedb/). Values of the SpeciesName column were used for name matching. There are many plants and insect species which share names -both genus and species (e.g. _Iris orientalis_), meaning that for TRY-db plant species, ids from all dbs with kingdom 'Plantae' have to be retained. For wikidata, taxizedb downloads the database from [zenodo](https://zenodo.org/record/1213477). There is no function to match the wikidata ids to their full-lineage or upper taxon levels in taxizedb, therefore first the names were matched to gbif names, lineage for the gbif ids were retrieved in taxize-db and the ones with kingdom 'Plantae' were retained,  which in turn were matched to the 'external-ids' column of the wikidata db provided by taxizedb, thus reducing the overall number of mapped plant species. This is a bottleneck and is in-progress to be solved. 
+Also, see [here](https://github.com/ropensci/taxizedb/issues/79) for details. To run the script:
 
 `Rscript matchTaxonomy.R`
 
-To plot distribution of the TRY-db species matched with ids from ott, ncbi, gbif and wikidata, run
+
+
+To plot distribution of the TRY-db species matched with ids from ncbi, gbif and wikidata, run
 
 `Rscript distTaxonomicIds.R`
 
