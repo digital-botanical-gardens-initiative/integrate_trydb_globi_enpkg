@@ -34,8 +34,55 @@
 			"tax_AlternativeName"
                 ]
             },
-            "filterExpression": "tr_AccSpeciesName = tax_TRY_AccSpeciesName",
+            "filterExpression": "tr_AccSpeciesID = tax_AccSpeciesID",
+            "type": "JoinLens"
+         },
+         {
+            "name": ["lenses", "intxn_tax"],
+            "join": {
+                "relations": [
+                    ["interactions"],
+                    ["taxonomy"]
+                ],
+                "columnPrefixes": [
+                    "intxn_",
+                    "tax_"
+                ]
+            },
+            "columns": {
+                "added": [],
+                "hidden": [
+			"tax_NameUsedForFuzzyMatching",
+			"tax_MatchedName",
+			"tax_RecommendedScientificName", 
+			"tax_DiffGen", 
+			"tax_DiffSpec", 
+			"tax_SelectReason", 
+			"tax_AlternativeName"
+                ]
+            },
+            "filterExpression": "tax_wikidata_id = intxn_source_WD OR tax_wikidata_id = intxn_target_WD",
+            "type": "JoinLens"
+	 },
+	 {
+            "name": ["lenses", "try_traits"],
+            "join": {
+                "relations": [
+                    ["trydbAll"],
+                    ["traits"]
+                ],
+                "columnPrefixes": [
+                    "tr_",
+                    "tra_"
+                ]
+            },
+            "columns": {
+                "added": [],
+                "hidden": []
+            },
+            "filterExpression": "tr_TraitID = tra_TraitID",
             "type": "JoinLens"
          }
+
      ]
 }

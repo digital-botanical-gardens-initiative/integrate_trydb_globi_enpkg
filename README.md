@@ -66,15 +66,18 @@ Note that the above requires downloading interactions.csv.gz from [GLOBI databas
 `Rscript extractIntoColumns_globi.R`
 
 
-**VI. Script to build the knowledge graph in Ontop**   
+**VI. Script to materialize the knowledge graph in Ontop**   
 `#Set the path in data/Ontop_config/duckdb.properties` 
 
 `sh run_ontop.sh`
 
 
-Note: This step is still in development and faulty.
+**VII. Script to build graph and run sparql queries from the ontop-materialized graph**   
+`#Set the path in data/Ontop_config/duckdb.properties` 
+
+`python3.12 graphify_n_visualize.py`
 
 
-**VII. Disclaimer**
+**VIII. Disclaimer**
 
 The mappings in the ontop virtual knowledge graph are faulty at the moment. Therefore, the SPARQL query does not result in correct results. Work in progress...

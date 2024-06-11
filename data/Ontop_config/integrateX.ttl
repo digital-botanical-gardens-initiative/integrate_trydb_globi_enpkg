@@ -30,29 +30,29 @@
            rdfs:domain :AccSpeciesID ;
            rdfs:range :DataID .
 
-:hasAccSpeciesID rdf:type owl:ObjectProperty ;
-		 rdfs:domain :wd_id ;
-	         rdfs:range :AccSpeciesID .
-
 	
 :hasOttID rdf:type owl:ObjectProperty .
- 	#  rdfs:domain :AccSpeciesID ;
+ 	#  rdfs:domain :TRY_SpeciesID ;
         #  rdfs:range :ott_id .
 
 	
 :hasNcbiID rdf:type owl:ObjectProperty .
- 	#   rdfs:domain :AccSpeciesID ;
+ 	#   rdfs:domain :TRY_SpeciesID ;
         #   rdfs:range :ncbi_id .
 
 	
 :hasGbifID rdf:type owl:ObjectProperty .
-  	#   rdfs:domain :AccSpeciesID ;
+  	#   rdfs:domain :TRY_SpeciesID ;
         #   rdfs:range :gbif_id .
 
-	
+
 :hasWdID rdf:type owl:ObjectProperty .
- 	# rdfs:domain :AccSpeciesID ;
-        # rdfs:range :wd_id .
+  	#   rdfs:domain :TRY_SpeciesID ;
+        #   rdfs:range :wikidata_id .
+	
+:hasAccSpeciesID rdf:type owl:ObjectProperty .
+ 	# rdfs:domain :TRY_SpeciesID ;
+        # rdfs:range :AccSpeciesID .
 
 
 #################################################################
@@ -67,11 +67,12 @@
 :DataID rdf:type owl:Class .
 
 ###  http://example.org/taxonomy#<attribute-name>
+:TRY_SpeciesID rdf:type owl:Class .
 :gbif_id rdf:type owl:Class .
 :ncbi_id rdf:type owl:Class .
 :ott_id rdf:type owl:Class .
 ##Note: there is a wd_taxon_id as the datatype property. What to do with that?
-:wd_id rdf:type owl:Class . 
+:wikidata_id rdf:type owl:Class . 
 
 
 
@@ -93,7 +94,7 @@
 
 ###  http://example.org/trydbAll#TraitName
 :TraitName rdf:type owl:DatatypeProperty ;
-           rdfs:domain :TraitID ;
+#           rdfs:domain :TraitID ;
            rdfs:range rdfs:Literal .
 
 ###  http://example.org/trydbAll#DataName
@@ -101,10 +102,6 @@
           rdfs:domain :DataID ;
           rdfs:range rdfs:Literal .
 
-###  http://example.org/taxonomy#TRY_AccSpeciesName
-#:TRY_AccSpeciesName rdf:type owl:DatatypeProperty ;
-#          	    rdfs:domain :AccSpeciesID ;
-#	            rdfs:range rdfs:Literal .
 
 ###  http://example.org/trydbAll#AccSpeciesName
 :AccSpeciesName rdf:type owl:DatatypeProperty ;
@@ -171,9 +168,9 @@
 		              rdfs:range rdfs:Literal .
 
 ###  http://example.org/taxonomy#TRY_SpeciesID
-:TRY_SpeciesID rdf:type owl:DatatypeProperty ;
-	       rdfs:domain :wd_id ;
-               rdfs:range rdfs:Literal .
+#:TRY_SpeciesID rdf:type owl:DatatypeProperty ;
+#	       rdfs:domain :wd_id ;
+#               rdfs:range rdfs:Literal .
 
 ###  http://example.org/taxonomy#TRY_SpeciesName
 :TRY_SpeciesName rdf:type owl:DatatypeProperty ;
@@ -197,7 +194,7 @@
 
 ###  http://example.org/trydbAll#Dataset
 :Dataset rdf:type owl:DatatypeProperty ;
-	 rdfs:domain :AccSpeciesID ;
+#	 rdfs:domain :AccSpeciesID ;
          rdfs:range rdfs:Literal .
 
 ###  http://example.org/trydbAll#DatasetID
@@ -292,7 +289,9 @@
 
 
 
-
+#### the following added manually for join lens
+:hasDataset rdf:type owl:DatatypeProperty ;
+         rdfs:range rdfs:Literal .
 
 
 ### the following has been manually added for the enpkg schema

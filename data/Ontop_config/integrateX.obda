@@ -1,6 +1,10 @@
 [PrefixDeclaration]
-:		    http://example.org/trydb_kg/
-data:		http://example.org/trydb_data/
+:		http://example.org/trydb_kg/
+wd:		http://www.wikidata.org/entity/
+obo: 		http://purl.obolibrary.org/obo/
+top:		https://top-thesaurus.org/annotationInfo?viz=1&&trait=
+uberon:		http://purl.obolibrary.org/obo/UBERON_
+enpkg:		https://enpkg.commons-lab.org/kg/
 rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
 rdfs:		http://www.w3.org/2000/01/rdf-schema#
 xml:		http://www.w3.org/XML/1998/namespace
@@ -10,16 +14,70 @@ obda:		https://w3id.org/obda/vocabulary#
 
 [MappingDeclaration] @collection [[
 mappingId	MAPPING-ID1
-target		:try1/{AccSpeciesID} a :AccSpeciesID ; :LastName {LastName}^^xsd:string ; :FirstName {FirstName}^^xsd:string ; :DatasetID {DatasetID}^^xsd:string ; :Dataset {Dataset}^^xsd:string ; :SpeciesName {SpeciesName}^^xsd:string ; :AccSpeciesName {AccSpeciesName}^^xsd:string ; :hasTraitID :try1/{TraitID} ; :hasObservationID :try1/{ObservationID} ; :hasObsDataID :try1/{ObsDataID} ; :TraitName {TraitName}^^xsd:string ; :hasDataID :try1/{DataID} ; :DataName {DataName}^^xsd:string ; :OriglName {OriglName}^^xsd:string ; :OrigValueStr {OrigValueStr}^^xsd:string ; :OrigUnitStr {OrigUnitStr}^^xsd:string ; :ValueKindName {ValueKindName}^^xsd:string ; :OrigUncertaintyStr {OrigUncertaintyStr}^^xsd:string ; :UncertaintyName {UncertaintyName}^^xsd:string ; :Replicates {Replicates}^^xsd:string ; :StdValue {StdValue}^^xsd:string ; :UnitName {UnitName}^^xsd:string ; :RelUncertaintyPercent {RelUncertaintyPercent}^^xsd:string ; :OrigObsDataID {OrigObsDataID}^^xsd:string ; :ErrorRisk {ErrorRisk}^^xsd:string ; :Reference {Reference}^^xsd:string ; :Comment {Comment}^^xsd:string ; :StdValueStr {StdValueStr}^^xsd:string . 
+target		:{AccSpeciesID} :LastName {LastName}^^xsd:string ; :FirstName {FirstName}^^xsd:string ; :DatasetID {DatasetID}^^xsd:string ; :Dataset {Dataset}^^xsd:string ; :SpeciesName {SpeciesName}^^xsd:string ; :AccSpeciesName {AccSpeciesName}^^xsd:string ; :TraitID :try1/{TraitID} ; :ObservationID {ObservationID} ; :ObsDataID {ObsDataID} ; :TraitName {TraitName}^^xsd:string ; :DataID {DataID} ; :DataName {DataName}^^xsd:string ; :OriglName {OriglName}^^xsd:string ; :OrigValueStr {OrigValueStr}^^xsd:string ; :OrigUnitStr {OrigUnitStr}^^xsd:string ; :ValueKindName {ValueKindName}^^xsd:string ; :OrigUncertaintyStr {OrigUncertaintyStr}^^xsd:string ; :UncertaintyName {UncertaintyName}^^xsd:string ; :Replicates {Replicates}^^xsd:string ; :StdValue {StdValue}^^xsd:string ; :UnitName {UnitName}^^xsd:string ; :RelUncertaintyPercent {RelUncertaintyPercent}^^xsd:string ; :OrigObsDataID {OrigObsDataID}^^xsd:string ; :ErrorRisk {ErrorRisk}^^xsd:string ; :Reference {Reference}^^xsd:string ; :Comment {Comment}^^xsd:string ; :StdValueStr {StdValueStr}^^xsd:string . 
 source		SELECT AccSpeciesID, LastName, FirstName, DatasetID, Dataset, SpeciesName, AccSpeciesName, TraitID, ObservationID, ObsDataID, TraitName, DataID, DataName, OriglName, OrigValueStr, OrigUnitStr, ValueKindName, OrigUncertaintyStr, UncertaintyName, Replicates, StdValue, UnitName, RelUncertaintyPercent, OrigObsDataID, ErrorRisk, Reference, Comment, StdValueStr FROM "trydbAll";
 
+mappingId	MAPPING-ID11
+target		:{DatasetID} :LastName {LastName}^^xsd:string ; :FirstName {FirstName}^^xsd:string ; :Dataset {Dataset}^^xsd:string ; :AccSpeciesID {AccSpeciesID} .
+source		SELECT DatasetID, LastName, FirstName, Dataset, AccSpeciesID FROM "trydbAll";
+
+
+mappingId	MAPPING-ID12
+target		:{ObservationID} :ObsDataID {ObsDataID} .
+source		SELECT ObservationID, ObsDataID FROM "trydbAll";
+
+
+mappingId	MAPPING-ID13
+target		:{ObsDataID} :DataID {DataID} .
+source		SELECT ObsDataID, DataID FROM "trydbAll";
+
+
+mappingId	MAPPING-ID14
+target		:{DataID} :DataName {DataName} ; :DataType {DataType} ; :TraitID {TraitID} .
+source		SELECT DataID, DataName, DataType, TraitID FROM "trydbAll";
+
+
+mappingId	MAPPING-ID15
+target		:{tr_TraitID} :TraitName {tr_TraitName} ; :TOP_ID {tra_TOP_ID} .
+source		SELECT tr_TraitID, tr_TraitName, tra_TOP_ID FROM lenses.try_traits;
+
+
+mappingId	MAPPING-ID15
+target		:{TraitID} :OriglName {OriglName} ; :OrigValueStr {OrigValueStr} ; :OrigUnitStr {OrigUnitStr} ; :ErrorRisk {ErrorRisk} .
+source		SELECT TraitID, OriglName, OrigValueStr, OrigUnitStr, ErrorRisk FROM "trydbAll";
+
+
+
+
+
 mappingId	MAPPING-ID2
-target		:tax1/{wikidata_id} a :wd_id ; :TRY_SpeciesID {TRY_SpeciesID}^^xsd:string ; :TRY_SpeciesName {TRY_SpeciesName}^^xsd:string ; :TRY_AccSpeciesName {TRY_AccSpeciesName}^^xsd:string ; :TRY_AccSpeciesNameScientific {TRY_AccSpeciesNameScientific}^^xsd:string ;  :BackboneDatabase {BackboneDatabase}^^xsd:string ; :Genus {Genus}^^xsd:string ; :Family {Family}^^xsd:string; :NameUsedForFuzzyMatching {NameUsedForFuzzyMatching}^^xsd:string; :MatchedName {MatchedName}^^xsd:string; :RecommendedScientificName {RecommendedScientificName}^^xsd:string; :Reference {Reference}^^xsd:string; :DiffGen {DiffGen}^^xsd:string; :DiffSpec {DiffSpec}^^xsd:string; :SelectReason {SelectReason}^^xsd:string; :AlternativeName {AlternativeName}^^xsd:string; :rank_id {rank_id}^^xsd:string; :parent_id {parent_id}^^xsd:string; :hasNcbiID :tax1/{ncbi_id} ; :hasGbifID :tax1/{gbif_id} ; :hasOttID :tax1/{ott_id} ; :hasAccSpeciesID :try1/{AccSpeciesID} . 
-source		SELECT wikidata_id, TRY_SpeciesID, TRY_SpeciesName, TRY_AccSpeciesName, TRY_AccSpeciesNameScientific, BackboneDatabase, Genus, Family, NameUsedForFuzzyMatching, MatchedName, RecommendedScientificName, Reference, DiffGen, DiffSpec, SelectReason, AlternativeName, rank_id, parent_id, ncbi_id, gbif_id, ott_id, AccSpeciesID  FROM "taxonomy";
+target		:{TRY_SpeciesID} :TRY_SpeciesName {TRY_SpeciesName}^^xsd:string ; :TRY_AccSpeciesName {TRY_AccSpeciesName}^^xsd:string ; :TRY_AccSpeciesNameScientific {TRY_AccSpeciesNameScientific}^^xsd:string ;  :BackboneDatabase {BackboneDatabase}^^xsd:string ; :Genus {Genus}^^xsd:string ; :Family {Family}^^xsd:string; :NameUsedForFuzzyMatching {NameUsedForFuzzyMatching}^^xsd:string; :MatchedName {MatchedName}^^xsd:string; :RecommendedScientificName {RecommendedScientificName}^^xsd:string; :Reference {Reference}^^xsd:string; :DiffGen {DiffGen}^^xsd:string; :DiffSpec {DiffSpec}^^xsd:string; :SelectReason {SelectReason}^^xsd:string; :AlternativeName {AlternativeName}^^xsd:string; :rank_id {rank_id}^^xsd:string; :parent_id {parent_id}^^xsd:string; :NcbiID :{ncbi_id} ; :GbifID :{gbif_id} ; :WdID wd:{wikidata_id} ; :hasAccSpeciesID :{AccSpeciesID} . 
+source		SELECT TRY_SpeciesID, TRY_SpeciesName, TRY_AccSpeciesName, TRY_AccSpeciesNameScientific, BackboneDatabase, Genus, Family, NameUsedForFuzzyMatching, MatchedName, RecommendedScientificName, Reference, DiffGen, DiffSpec, SelectReason, AlternativeName, rank_id, parent_id, ncbi_id, gbif_id, wikidata_id, AccSpeciesID  FROM "taxonomy";
+
+
 
 mappingId	MAPPING-ID3
-target		:try1/{tr_AccSpeciesID} :hasOttID :{tax_ott_id}; :hasNcbiID :{tax_ncbi_id}; :hasGbifID :{tax_gbif_id}; :hasWdID :{tax_wikidata_id} .
-source		SELECT tr_AccSpeciesID, tax_ott_id, tax_ncbi_id, tax_gbif_id, tax_wikidata_id FROM lenses.try_tax;
+target		:{tr_AccSpeciesID} :hasWdID wd:{tax_wikidata_id} ; :hasNcbiID :{tax_ncbi_id} ; :hasGbifID :{tax_gbif_id} ; :Genus {tax_Genus} ; :Family {tax_Family} ; :Reference {tax_Reference} ; :rank_id {tax_rank_id} ; :parent_id {tax_parent_id} .
+source		SELECT tr_AccSpeciesID, tax_wikidata_id, tax_ncbi_id, tax_gbif_id, tax_Genus, tax_Family, tax_Reference, tax_rank_id, tax_parent_id FROM lenses.try_tax;
 
+
+mappingId	MAPPING-ID4
+target		wd:{source_WD} :hasSName {sourceTaxonName} ; :hasSRank {sourceTaxonRank} ; :hasSOcc {sourceOccurrenceId} ; :hasSInst {sourceInstitutionCode} ; :hasSLifeStageId {sourceLifeStageId} ; :hasSLifeStageNName {sourceLifeStageName} ; :hasSBodyId {sourceBodyPartId} ; :hasSBodyName {sourceBodyPartName} ; :hasSPhyId {sourcePhysiologicalStateId} ; :hasSPhyName {sourcePhysiologicalStateName} ; :hasSSexId {sourceSexId} ; :hasSSexName {sourceSexName} ; :hasIntxnName {interactionTypeName} ; :hasIntxnId {interactionTypeId} ; :hasTName {targetTaxonName} ; :hasTRank {targetTaxonRank} ; :hasTOcc {targetOccurrenceId} ; :hasTInst {targetInstitutionCode} ; :hasTLifeStageId {targetLifeStageId} ; :hasTLifeStageNName {targetLifeStageName} ; :hasTBodyId {targetBodyPartId} ; :hasTBodyName {targetBodyPartName} ; :hasTPhyId {targetPhysiologicalStateId} ; :hasTPhyName {targetPhysiologicalStateName} ; :hasTSexId {targetSexId} ; :hasTSexName {targetSexName}; :interactsWith wd:{target_WD} .
+source		SELECT source_WD, sourceTaxonName, sourceTaxonRank, sourceOccurrenceId, sourceInstitutionCode, sourceLifeStageId, sourceLifeStageName, sourceBodyPartId, sourceBodyPartName, sourcePhysiologicalStateId, sourcePhysiologicalStateName, sourceSexId, sourceSexName, interactionTypeName, interactionTypeId, targetTaxonName, targetTaxonRank, targetOccurrenceId, targetInstitutionCode, targetLifeStageId, targetLifeStageName, targetBodyPartId, targetBodyPartName, targetPhysiologicalStateId, targetPhysiologicalStateName, targetSexId, targetSexName, target_WD FROM "interactions";
+
+
+mappingId	MAPPING-ID5
+target		wd:{target_WD} :hasSName {sourceTaxonName} ; :hasSRank {sourceTaxonRank} ; :hasSOcc {sourceOccurrenceId} ; :hasSInst {sourceInstitutionCode} ; :hasSLifeStageId {sourceLifeStageId} ; :hasSLifeStageNName {sourceLifeStageName} ; :hasSBodyId {sourceBodyPartId} ; :hasSBodyName {sourceBodyPartName} ; :hasSPhyId {sourcePhysiologicalStateId} ; :hasSPhyName {sourcePhysiologicalStateName} ; :hasSSexId {sourceSexId} ; :hasSSexName {sourceSexName} ; :hasIntxnName {interactionTypeName} ; :hasIntxnId {interactionTypeId} ; :hasTName {targetTaxonName} ; :hasTRank {targetTaxonRank} ; :hasTOcc {targetOccurrenceId} ; :hasTInst {targetInstitutionCode} ; :hasTLifeStageId {targetLifeStageId} ; :hasTLifeStageNName {targetLifeStageName} ; :hasTBodyId {targetBodyPartId} ; :hasTBodyName {targetBodyPartName} ; :hasTPhyId {targetPhysiologicalStateId} ; :hasTPhyName {targetPhysiologicalStateName} ; :hasTSexId {targetSexId} ; :hasTSexName {targetSexName}; :interactsWith wd:{source_WD} .
+source		SELECT target_WD, sourceTaxonName, sourceTaxonRank, sourceOccurrenceId, sourceInstitutionCode, sourceLifeStageId, sourceLifeStageName, sourceBodyPartId, sourceBodyPartName, sourcePhysiologicalStateId, sourcePhysiologicalStateName, sourceSexId, sourceSexName, interactionTypeName, interactionTypeId, targetTaxonName, targetTaxonRank, targetOccurrenceId, targetInstitutionCode, targetLifeStageId, targetLifeStageName, targetBodyPartId, targetBodyPartName, targetPhysiologicalStateId, targetPhysiologicalStateName, targetSexId, targetSexName, source_WD FROM "interactions";
+
+
+mappingId	MAPPING-ID7
+target		:{TraitID} :TraitName top:{TraitName} ; :TOP_ID {TOP_ID} .
+source		SELECT TraitID, TraitName, TOP_ID from "traits";
+
+
+mappingId	MAPPING-ID8
+target		wd:{wd_taxon_id} :raw_material enpkg:{raw_material} ; :submitted_taxon {submitted_taxon} ; :organ {organ} ; :broad_organ {broad_organ} ; :tissue {tissue} ; :subsystem {subsystem} .
+source		SELECT wd_taxon_id, raw_material, submitted_taxon, organ, broad_organ, tissue, subsystem from "enpkg";
 ]]
 
