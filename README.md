@@ -49,7 +49,7 @@ To plot distribution of the TRY-db species matched with ids from ncbi, gbif and 
 `sh run_duckdb.sh`
 
 The relations between tables are depicted in the following minimal ER diagram. The full diagram can be found in the file 'figures/TableRelations_ER_diagram_full.png'
-![TableRelations_truncated_20240513](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/TableRelations_truncated_diagram.png?raw=true)
+![TableRelations_truncated_20240625](https://github.com/digital-botanical-gardens-initiative/integrate_trydb_globi_enpkg/blob/master/figures/TableRelations_truncated_20240625.png?raw=true)
 
 
 
