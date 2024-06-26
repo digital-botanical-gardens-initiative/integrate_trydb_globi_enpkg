@@ -16,7 +16,7 @@ def sparql_results_to_df(results: SPARQLResult) -> DataFrame:
 
 # Create graph
 g = Graph()
-g.parse("data/duckdb_materialized_triples1.rdf")
+g.parse("data/duckdb_materialized_triples111.rdf")
 
 # Sample queries
 q =  """PREFIX : <http://example.org/trydb_kg/>
@@ -69,13 +69,34 @@ q4 = """PREFIX : <http://example.org/trydb_kg/>
         VALUES ?wikidata_id { <http://www.wikidata.org/entity/Q713794> }
         ?wikidata_id :hasIntxnId ?intxnID .
         }"""
+q5 = """PREFIX : <http://example.org/trydb_kg/>
+        PREFIX wd: <http://www.wikidata.org/entity/>
+        SELECT DISTINCT * WHERE {
+            ?t :SpeciesName ?SpeciesName .
+            ?t :AccSpeciesName ?AccSpeciesName . 
+            ?t   :hasWdID ?wikidata_id . 
+            VALUES ?wikidata_id { <http://www.wikidata.org/entity/Q713794> }
+            ?wikidata_id :wd_chem ?wd_chem . 
+        }"""
+
+q6 = """PREFIX : <http://example.org/trydb_kg/>
+        PREFIX wd: <http://www.wikidata.org/entity/>
+        SELECT * WHERE {\n ?t :SpeciesName ?SpeciesName .
+            ?t :AccSpeciesName ?AccSpeciesName . 
+            ?t   :hasWdID ?wikidata_id .
+            ?wikidata_id :interactsWith ?targetWD . 
+            VALUES ?wikidata_id { <http://www.wikidata.org/entity/Q713794> }
+            ?wikidata_id :hasIntxnId ?intxnID .
+            ?wikidata_id :wd_chem ?wd_chem .
+            ?wikidata_id :organism_name ?organism_name .
+            ?wikidata_id :structure_inchikey ?structure_inchikey .
+        }"""
 
 
 # Run query, save in dataframe
-s = g.query(q)
-for row in s:
-    print(f"{row.TRY_SpeciesName} has {row.wikidata_id} and alternately names {row.AccSpeciesName}")
+s = g.query(q6)
 s1 = sparql_results_to_df(s)
 print(s1)
+s1.to_csv("data/res_sparql_q6.csv", sep=',', index=False, encoding='utf-8')
 
 

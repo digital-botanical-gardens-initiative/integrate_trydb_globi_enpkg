@@ -80,4 +80,4 @@ Note that the above requires downloading interactions.csv.gz from [GLOBI databas
 
 **VIII. Disclaimer**
 
-The mappings in the ontop virtual knowledge graph are faulty at the moment. Therefore, the SPARQL query does not result in correct results. Work in progress...
+Ontop used for making the mappings. Six SPARQL queries in 'graphify_n_visualize.py' work, but more to be tested.
