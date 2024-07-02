@@ -1,4 +1,4 @@
-This repository contains scripts for integrating species and subsequent traits data from trydb with taxonomic ids from gbif, otol, ncbi and wikidata. Data for only 25 traits was downloaded from TRY-db. Subsequently, the traits metadata was retrieved from TRY-db website and a subset of enpkg was also retrieved. The csv file for interactions was retrieved from [GLOBI database](https://www.globalbioticinteractions.org/data). The csv files retrieved were converted to duckdb (adavantge: on-disk approach for sql queries). 
+This repository contains scripts for integrating species and subsequent traits data from trydb with taxonomic ids from gbif, otol, ncbi and wikidata. Data for only 25 traits was downloaded from TRY-db. Subsequently, the traits metadata was retrieved from TRY-db website and a subset of enpkg was also retrieved. The csv file for interactions was retrieved from [GLOBI database](https://www.globalbioticinteractions.org/data). The csv files retrieved were converted to duckdb database file. 
 
 Download the datasets used in this repo from [zenodo](https://zenodo.org/doi/10.5281/zenodo.11186592). Merge them with the data folder in this repo.
 
