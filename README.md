@@ -54,9 +54,9 @@ The relations between tables are depicted in the following minimal ER diagram. T
 
 
 
-**IV. Script to extract common wikidata ids between TRY-db and GLOBI, followed by retrieveing pair-wise interaction data from GLOBI for those ids**
+**IV. Script to extract common wikidata ids between TRY-db and GLOBI, followed by retrieveing pair-wise interaction data from GLOBI for those ids (not followed eventually, all interactions with kingdom 'Plantae' were used)**
 
-`sh run_ext_com_GLOBI_TRY.sh`
+`sh run_ext_com_GLOBI_TRY.sh` (No longer needed)
 
 
 Note that the above requires downloading interactions.csv.gz from [GLOBI database](https://www.globalbioticinteractions.org/data)
