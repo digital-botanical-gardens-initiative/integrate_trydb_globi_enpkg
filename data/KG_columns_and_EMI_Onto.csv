@@ -1,0 +1,218 @@
+table,column,EMI_onto,property_type,property_name_in_wd,wd_property_id,existing_in_EMI_onto,comment
+trydbAll,LastName,Person,,,,,
+trydbAll,FirstName,Person,,,,,
+trydbAll,DatasetID,,,,,,try specific
+trydbAll,Dataset ,,,,,,try specific
+trydbAll,SpeciesName,Organism,,,,,
+trydbAll,AccSpeciesID,,,,,,try specific
+trydbAll,AccSpeciesName,,,,,,try specific
+trydbAll,ObservationID,,,,,,try specific
+trydbAll,ObsDataID,,,,,,try specific
+trydbAll,TraitID,,,,,,try specific
+trydbAll,TraitName,,,,,,try specific
+trydbAll,DataID,,,,,,try specific
+trydbAll,DataName,,,,,,try specific
+trydbAll,OriglName,,,,,,try specific
+trydbAll,OrigValueStr,,,,,,try specific
+trydbAll,OrigUnitStr,,,,,,try specific
+trydbAll,ValueKindName,,,,,,try specific
+trydbAll,OrigUncertainityStr,,,,,,try specific
+trydbAll,UncertainityName,,,,,,try specific
+trydbAll,Replicates,,,,,,try specific
+trydbAll,StdValue,,,,,,try specific
+trydbAll,UnitName,,,,,,try specific
+trydbAll,RelUncertainityPercent,,,,,,try specific
+trydbAll,OrigObsDataID,,,,,,try specific
+trydbAll,ErrorRisk,,,,,,try specific
+trydbAll,Reference,,,,,,
+trydbAll,Comment,comment,annotation property,,,,
+trydbAll,StdValueStr,,,,,,try specific
+trydbAll,DataType,,,,,,try specific
+taxonomy,TRY_SpeciesID,,,,,,try specific
+taxonomy,TRY_SpeciesName,Organism,,,,,
+taxonomy,AccSpeciesID,,,,,,try specific
+taxonomy,TRY_AccSpeciesName,,,,,,try specific
+taxonomy,TRY_AccSpeciesNameScientific,scientific name,data property,,,,
+taxonomy,BackboneDatabase,,,,,,temporary
+taxonomy,Genus,Organism,,,,,
+taxonomy,Family,Organism,,,,,
+taxonomy,NameUsedForFuzzyMatching,,,,,,temporary
+taxonomy,MatchedName,,,,,,temporary
+taxonomy,RecommendedScientificName,scientific name,data property,,,,temporary
+taxonomy,Reference,,,,,,temporary
+taxonomy,DiffGen,,,,,,temporary
+taxonomy,DiffSpec,,,,,,temporary
+taxonomy,SelectReason,,,,,,temporary
+taxonomy,AlternativeName,,,,,,temporary
+taxonomy,wikidata_id,Wikidata taxon,,,,,
+taxonomy,rank_id,,,,P105,,temporary
+taxonomy,parent_id,,,,P171,,temporary
+taxonomy,external_id,,,,,,temporary
+taxonomy,ncbi_id,Organism,,,,,
+taxonomy,gbif_id,Organism,,,,,
+interactions,sourceTaxonId,Organism,,,,,
+interactions,sourceTaxonName,Organism,,,,,
+interactions,sourceTaxonRank,,,,P105,,
+interactions,sourceTaxonPathNames,,,,,,
+interactions,sourceTaxonPathIds,,,,,,
+interactions,sourceTaxonPathRankNames,,,,,,
+interactions,sourceTaxonSpeciesName,Organism,,,,,
+interactions,sourceTaxonSpeciesId,Organism,,,,,
+interactions,sourceTaxonSubgenusName,Organism,,,,,
+interactions,sourceTaxonSubgenusId,Organism,,,,,
+interactions,sourceTaxonGenusName,Organism,,,,,
+interactions,sourceTaxonGenusId,Organism,,,,,
+interactions,sourceTaxonFamilyName,Organism,,,,,
+interactions,sourceTaxonFamilyId,Organism,,,,,
+interactions,sourceTaxonOrderName,Organism,,,,,
+interactions,sourceTaxonOrderId,Organism,,,,,
+interactions,sourceTaxonClassName,Organism,,,,,
+interactions,sourceTaxonClassId,Organism,,,,,
+interactions,sourceTaxonPhylumName,Organism,,,,,
+interactions,sourceTaxonPhylumId,Organism,,,,,
+interactions,sourceTaxonKingdomName,Organism,,,,,
+interactions,sourceTaxonKingdomId,Organism,,,,,
+interactions,sourceId,Organism,,,,,
+interactions,sourceOccurrenceId,,,,,,
+interactions,sourceInstitutionCode,Organization,,,,,
+interactions,sourceCollectionCode,,,,,,
+interactions,sourceCatalogNumber,,,,,,
+interactions,sourceBasisOfRecordId,,,,,,
+interactions,sourceBasisOfRecordName,,,,,,
+interactions,sourceLifeStageId,,,,,,
+interactions,sourceLifeStageName,,,,,,UBERON/GLOBI
+interactions,sourceBodyPartId,,,,,,UBERON/GLOBI
+interactions,sourceBodyPartName,,,,,,
+interactions,sourcePhysiologicalStateId,,,,,,
+interactions,sourcePhysiologicalStateName,,,,,,
+interactions,sourceSexId,,,,,,
+interactions,sourceSexName,,,,,,
+interactions,interactionTypeName,,,,,,
+interactions,interactionTypeId,,,,,,
+interactions,targetTaxonId,Organism,,,,,
+interactions,targetTaxonName,Organism,,,,,
+interactions,targetTaxonRank,,,,P105,,
+interactions,targetTaxonPathNames,,,,,,
+interactions,targetTaxonPathIds,,,,,,
+interactions,targetTaxonPathRankNames,,,,,,
+interactions,targetTaxonSpeciesName,Organism,,,,,
+interactions,targetTaxonSpeciesId,Organism,,,,,
+interactions,targetTaxonSubgenusName,Organism,,,,,
+interactions,targetTaxonSubgenusId,Organism,,,,,
+interactions,targetTaxonGenusName,Organism,,,,,
+interactions,targetTaxonGenusId,Organism,,,,,
+interactions,targetTaxonFamilyName,Organism,,,,,
+interactions,targetTaxonFamilyId,Organism,,,,,
+interactions,targetTaxonOrderName,Organism,,,,,
+interactions,targetTaxonOrderId,Organism,,,,,
+interactions,targetTaxonClassName,Organism,,,,,
+interactions,targetTaxonClassId,Organism,,,,,
+interactions,targetTaxonPhylumName,Organism,,,,,
+interactions,targetTaxonPhylumId,Organism,,,,,
+interactions,targetTaxonKingdomName,Organism,,,,,
+interactions,targetTaxonKingdomId,Organism,,,,,
+interactions,targetId,Organism,,,,,
+interactions,targetOccurrenceId,,,,,,
+interactions,targetInstitutionCode,Organization,,,,,
+interactions,targetCollectionCode,,,,,,
+interactions,targetCatalogNumber,,,,,,
+interactions,targetBasisOfRecordId,,,,,,
+interactions,targetBasisOfRecordName,,,,,,
+interactions,targetLifeStageId,,,,,,
+interactions,targetLifeStageName,,,,,,UBERON/GLOBI
+interactions,targetBodyPartId,,,,,,UBERON/GLOBI
+interactions,targetBodyPartNametargetPhysiologicalStateId,,,,,,
+interactions,targetPhysiologicalStateName,,,,,,
+interactions,targetSexId,,,,,,
+interactions,targetSexName,,,,,,
+interactions,decimalLatitude,,,,,,
+interactions,decimalLongitude,,,,,,
+interactions,localityId,,,,,,
+interactions,localityName,,,,,,
+interactions,eventDate,,,,,,
+interactions,argumentTypeId,,,,,,
+interactions,referenceCitation,,,,,,
+interactions,referenceDoi,,,,P356,,
+interactions,referenceUrl,,,,,,
+interactions,sourceCitation,,,,,,
+interactions,sourceNamespace,,,,,,
+interactions,sourceArchiveURI,,,,,,
+interactions,sourceDOI,,,,P356,,
+interactions,sourceLastSeenAtUnixEpoch,,,,,,
+interactions,source_BOLD,,,,,,
+interactions,source_COL,,,,,,
+interactions,source_ENVO,,,,,,
+interactions,source_EOL,,,,,,
+interactions,source_FB,,,,,,
+interactions,source_FBC,,,,,,
+interactions,source_GBIF,,,,,,
+interactions,source_IF,,,,,,
+interactions,source_IRMNG,,,,,,
+interactions,source_ITIS,,,,,,
+interactions,source_NBN,,,,,,
+interactions,source_NCBI,,,,,,
+interactions,source_PBDB,,,,,,
+interactions,source_SLB,,,,,,
+interactions,source_SPECCODE,,,,,,
+interactions,source_TAXON,,,,,,
+interactions,source_W,,,,,,
+interactions,source_WD,,,,,,wd id
+interactions,source_WORMS,,,,,,
+interactions,target_BOLD,,,,,,
+interactions,target_COL,,,,,,
+interactions,target_ENVO,,,,,,
+interactions,target_EOL,,,,,,
+interactions,target_FB,,,,,,
+interactions,target_FBC,,,,,,
+interactions,target_GBIF,,,,,,
+interactions,target_IF,,,,,,
+interactions,target_IRMNG,,,,,,
+interactions,target_ITIS,,,,,,
+interactions,target_NBN,,,,,,
+interactions,target_NCBI,,,,,,
+interactions,target_PBDB,,,,,,
+interactions,target_SLB,,,,,,
+interactions,target_SPECCODE,,,,,,
+interactions,target_TAXON,,,,,,
+interactions,target_W,,,,,,
+interactions,target_WD,,,,,,wd id
+interactions,target_WORMS,,,,,,
+lotus,structure_wikidata,Wikidata chemical,Class,,,,wd id
+lotus,structure_inchikey,2D_InCHIKey,Class,,P235,"hasInCHIKey2D, hasInCHIKey, is InChIKEy of, is InCHIKey of, InCHIKey 2D value, InCHIKey value",
+lotus,structure_inchi,InCHIKey,Class,,P234,,
+lotus,structure_smiles,Chemical structure representation?,Class,,,,Not sure
+lotus,structure_molecular_formula,,,chemical formula,P274,,
+lotus,structure_exact_mass,,,,,,
+lotus,structure_xlogp,,,LogP,Pending property proposal,,
+lotus,structure_smiles_2D,Chemical structure representation?,Class,,,,Not sure
+lotus,structure_cid,,,PubChem CID,P662,,
+lotus,structure_nameIupac,,,IUPAC name,Pending property proposal,,
+lotus,structure_nameTraditional,,,INCI name?,P4951?,,
+lotus,structure_stereocenters_total,,,,,,
+lotus,structure_stereocenters_unspecified,,,,,,
+lotus,structure_taxonomy_npclassifier_01pathway,Natural product pathway,Class,,,has pathway,
+lotus,structure_taxonomy_npclassifier_02superclass,Natural product superclass,Class,,,has super class,
+lotus,structure_taxonomy_npclassifier_03class,Natural product class,Class,,,has class,
+lotus,structure_taxonomy_classyfire_chemontid,,,,,,
+lotus,structure_taxonomy_classyfire_01kingdom,,,,,,
+lotus,structure_taxonomy_classyfire_02superclass,,,,,,
+lotus,structure_taxonomy_classyfire_03class,,,,,,
+lotus,structure_taxonomy_classyfire_04directparent,,,,,,
+lotus,organism_wikidata,Wikidata taxon,,,,,wd id
+lotus,organism_name,Organism taxon,,,,,
+lotus,organism_taxonomy_gbifid,Organism?,,,,,
+lotus,organism_taxonomy_ncbiid,Organism?,,,,,
+lotus,organism_taxonomy_ottid,Organism?,,,,,
+lotus,organism_taxonomy_01domain,Organism taxon?,,,,,
+lotus,organism_taxonomy_02kingdom,Organism taxon?,,,,,
+lotus,organism_taxonomy_03phylum,Organism taxon?,,,,,
+lotus,organism_taxonomy_04class,Organism taxon?,,,,,
+lotus,organism_taxonomy_05order,Organism taxon?,,,,,
+lotus,organism_taxonomy_06family,Organism taxon?,,,,,
+lotus,organism_taxonomy_07tribe,Organism taxon?,,,,,
+lotus,organism_taxonomy_08genus,Organism taxon?,,,,,
+lotus,organism_taxonomy_09species,Organism taxon?,,,,,
+lotus,organism_taxonomy_10varietas,Organism taxon?,,,,,
+lotus,reference_wikidata,,,,,,wd id
+lotus,reference_doi,,,,P356,,
+lotus,manual_validation,,,,,,
