@@ -1,0 +1,24 @@
+## List interactions and traits of all species which have an IUCN status of near threatened. wdt:P141 wd:Q719675.
+
+
+PREFIX emi: <https://purl.org/emi#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+SELECT ?intxn ?source ?target ?wdx ?trySpName ?tryDataLab
+WHERE {
+	    ?intxn emi:hasSource ?source ;
+        	   emi:hasTarget ?target .
+	    ?source emi:inTaxon ?wdx .
+		SERVICE <https://query.wikidata.org/sparql> {
+		    ?wdx wdt:P141 wd:Q719675 .
+		}
+	    ?trySpName emi:inTaxon ?wd .
+	    ?trySpObs sosa:isSampleOf ?trySpName ;
+        	      sosa:isFeatureOfInterestOf ?tryObId .
+	    ?tryData sosa:isResultOf ?tryObId .
+	    ?tryData rdfs:label ?tryDataLab .
+        } LIMIT 200
+

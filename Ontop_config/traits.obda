@@ -1,0 +1,44 @@
+[PrefixDeclaration]
+: https://purl.org/emi/abox#
+emi: https://purl.org/emi#
+wd: http://www.wikidata.org/entity/
+owl: http://www.w3.org/2002/07/owl#
+rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+sdo: http://schema.org/
+xml: http://www.w3.org/XML/1998/namespace
+xsd: http://www.w3.org/2001/XMLSchema#
+foaf: http://xmlns.com/foaf/0.1/
+rdfs: http://www.w3.org/2000/01/rdf-schema#
+skos: http://www.w3.org/2004/02/skos/core#
+sosa: http://www.w3.org/ns/sosa/
+vann: http://purl.org/vocab/vann/
+void: http://rdfs.org/ns/void#
+orcid: http://orcid.org/
+dcterms: http://purl.org/dc/terms/
+npc: https://purl.org/npc#
+usi: https://metabolomics-usi.ucsd.edu/dashinterface/?usi1=
+prov: http://www.w3.org/ns/prov#
+up: http://purl.uniprot.org/core/
+
+[MappingDeclaration] @collection [[
+
+
+
+mappingId	taxonomyLong
+target		<https://tree.opentreeoflife.org/taxonomy/browse?id={ott}> skos:exactMatch <http://purl.uniprot.org/taxonomy/{ncbi_wd}>,  <https://www.gbif.org/species/{gbif_ott}>, <https://www.eol.org/pages/{eol}>, <http://purl.obolibrary.org/obo/NCBITaxon_{ncbi_wd}>, <https://itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value={itis}>, <https://www.irmng.org/aphia.php?p=taxdetails&id={irmng_wd}>, <https://www.marinespecies.org/aphia.php?p=taxdetails&id={worms}>, <https://www.catalogueoflife.org/data/taxon/{col}>, <https://species.nbnatlas.org/species/{nbn}>, <https://departments.bucknell.edu/biology/resources/msw3/browse.asp?id={msw3}>, <http://www.wikidata.org/entity/{WdID}> . <https://www.gbif.org/species/{gbif_ott}> dcterms:identifier {gbif_ott}^^xsd:int ; skos:inScheme <https://www.gbif.org/species> . <https://www.gbif.org/species> rdfs:label "The GBIF taxonomy" . <https://www.eol.org/pages/{eol}> dcterms:identifier {eol}^^xsd:int ; skos:inScheme <https://www.eol.org> . <https://www.eol.org> rdfs:label "Encyclopedia of Life" . <http://purl.obolibrary.org/obo/NCBITaxon_{ncbi_wd}> dcterms:identifier {ncbi_wd}^^xsd:int ; skos:inScheme <http://purl.obolibrary.org/obo/ncbitaxon.owl> . <http://purl.obolibrary.org/obo/ncbitaxon.owl>  rdfs:label "NCBI organismal classification" . <http://www.wikidata.org/entity/{WdID}> dcterms:identifier {WdID}^^xsd:string ; a emi:Taxon ; skos:inScheme <http://www.wikidata.org/entity> . <http://www.wikidata.org/entity> rdfs:label "Wikidata entities". <https://itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value={itis}> dcterms:identifier {itis}^^xsd:string ; skos:inScheme <https://itis.gov> . <https://itis.gov> rdfs:label "Integrated Taxonomic Information System" . <https://www.irmng.org/aphia.php?p=taxdetails&id={irmng_wd}> dcterms:identifier {irmng_wd}^^xsd:string ; skos:inScheme <https://www.irmng.org> . <https://www.irmng.org> rdfs:label "Interim Register of Marine and Nonmarine Genera" . <https://www.marinespecies.org/aphia.php?p=taxdetails&id={worms}> dcterms:identifier {worms}^^xsd:string ; skos:inScheme <https://www.marinespecies.org> . <https://www.marinespecies.org> rdfs:label "World Register of Marine Species" . <https://www.catalogueoflife.org/data/taxon/{col}> dcterms:identifier {col}^^xsd:string ; skos:inScheme <https://www.catalogueoflife.org> . <https://www.catalogueoflife.org> rdfs:label "Catalogue of Life" . <https://species.nbnatlas.org/species/{nbn}> dcterms:identifier {nbn}^^xsd:string ; skos:inScheme <https://species.nbnatlas.org> . <https://species.nbnatlas.org> rdfs:label "National Biodiversity Network" . <https://departments.bucknell.edu/biology/resources/msw3/browse.asp?id={msw3}> dcterms:identifier {msw3}^^xsd:string ; skos:inScheme <https://departments.bucknell.edu/biology/resources/msw3> . <https://departments.bucknell.edu/biology/resources/msw3> rdfs:label "Mammal Species of the World" . 
+source		SELECT DISTINCT IF(ott='NA',null,ott) as ott, IF(ncbi_wd='NA', null, ncbi_wd) as ncbi_wd, IF(gbif_ott='NA', null, gbif_ott) as gbif_ott, IF(eol='NA', null, eol) as eol, IF(itis='NA', null, itis) as itis, IF(irmng_wd='NA', null, irmng_wd) as irmng_wd, IF(worms='NA', null, worms) as worms, IF(col='NA', null, col) as col, IF(nbn='NA', null, nbn) as nbn, IF(msw3='NA', null, msw3) as msw3, IF(WdID = 'NA', null, WdID) as WdID FROM enpkg JOIN taxonomy ON enpkg.wd_taxon_id=taxonomy.WdID
+
+
+mappingId	try-db.tax
+target		:SAMPLE-{AccSpeciesName}-{ObsDataID} a sosa:Sample; sosa:isSampleOf :ORGANISM-{AccSpeciesName}; sosa:isFeatureOfInterestOf :OBSERVATION-{ObservationID}; :dcterms:isPartOf :DATASET-{Dataset} . :DATASET-{Dataset} dcterms:bibliographicCitation {Reference} . :OBSERVATION-{ObservationID} sosa:hasResult _:RESULT-{ObsDataID} . _:RESULT-{ObsDataID} a emi:{DataType} ; rdfs:label {DataName} ; dcterms:identifier {DataId}^^xsd:string ; rdf:value {StdValueStr}^^xsd:string . :ORGANISM-{AccSpeciesName} emi:inTaxon <http://www.wikidata.org/entity/{WdID}> .
+source		SELECT trydb.AccSpeciesName, ObsDataID, ObservationID, Dataset, Reference, IF(DataType = 'Trait', 'ContinuousTrait', 'NonTrait') as datatype, DataName, DataId, StdValueStr, IF(taxonomy.WdID = 'NA', null, taxonomy.WdID) as WdID FROM trydb JOIN taxonomy ON trydb.AccSpeciesName=taxonomy.TRY_AccSpeciesName JOIN enpkg ON taxonomy.WdID=enpkg.wd_taxon_id
+
+
+mappingId       globi
+target          :{interactionRecord} emi:hasSource :{sourceTaxonId} ; emi:hasTarget :{targetTaxonId}; emi:hasInteractionType :{interactionTypeName} ; prov:atLocation :{localityName} ; dcterms:bibliographicCitation {referenceDoi}^^xsd:string , {sourceDOI}^^xsd:String . :{interactionTypeName} skos:exactMatch <http://purl.obolibrary.org/obo/{interactionTypeId}> ; dcterms:identifier {interactionTypeId}^^xsd:string . :{localityName} dcterms:identifier {localityId}^^xsd:string ; <http://www.w3.org/2003/01/geo/wgs84_pos#lat> {decimalLatitude}^^xsd:string ; <http://www.w3.org/2003/01/geo/wgs84_pos#long> {decimalLongitude}^^xsd:string . :{sourceTaxonId} a sosa:Sample ; sosa:isSampleOf emi:{sourceTaxonName} ; emi:inTaxon <http://www.wikidata.org/entity/{source_WD}> ; emi:hasAnatomicalEntity :{sourceBodyPartName}; emi:hasPhysiologicalStage :{sourcePhysiologicalStateName} ; emi:hasDevelopmentalStage :{sourceLifeStageName} ; emi:hasSex :{sourceSexName} . :{targetTaxonId} a sosa:Sample ; sosa:isSampleOf emi:{targetTaxonName} ; emi:inTaxon <http://www.wikidata.org/entity/{target_WD}> ; emi:hasAnatomicalEntity :{targetBodyPartName}; emi:hasPhysiologicalStage :{targetPhysiologicalStateName} ; emi:hasDevelopmentalStage :{targetLifeStageName} ; emi:hasSex :{targetSexName} . :{sourceBodyPartName} dcterms:identifier {sourceBodyPartId}^^xsd:string . :{sourcePhysiologicalStateName} dcterms:identifier {sourcePhysiologicalStateId}^^xsd:string . :{sourceLifeStageName} dcterms:identifier {sourceLifeStageId}^^xsd:string . :{sourceSexName}  dcterms:identifier {sourceSexId}^^xsd:string . :{targetBodyPartName} dcterms:identifier {targetBodyPartId}^^xsd:string . :{targetPhysiologicalStateName} dcterms:identifier {targetPhysiologicalStateId}^^xsd:string . :{targetLifeStageName} dcterms:identifier {targetLifeStageId}^^xsd:string . :{targetSexName}  dcterms:identifier {targetSexId}^^xsd:string . 
+source          SELECT interactionRecord, sourceTaxonId, targetTaxonId, interactionTypeName, localityName, referenceDoi, sourceDOI, interactionTypeId, localityId, decimalLatitude, decimalLongitude, sourceTaxonName, source_WD, sourceBodyPartName, sourcePhysiologicalStateName, sourceLifeStageName, sourceSexName, targetTaxonName, target_WD, targetBodyPartName, targetPhysiologicalStateName, targetLifeStageName, targetSexName, sourceBodyPartId, sourcePhysiologicalStateId, sourceLifeStageId, sourceSexId, targetBodyPartId, targetPhysiologicalStateId, targetLifeStageId, targetSexId FROM interactions i JOIN taxonomy t ON i.source_WD=t.WdID OR i.target_WD=t.WdID 
+
+
+
+
+]]
