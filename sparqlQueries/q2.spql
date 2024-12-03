@@ -1,0 +1,44 @@
+## List all metabolites produced by species with near threatened IUCN status 
+
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://purl.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?ik ?wd_chem ?wdx ?tryDataLab ?spname
+WHERE
+    {
+
+      { SELECT ?wdx ?ik ?wd_chem WHERE {
+        ?material enpkg:has_lab_process ?extract ;
+                ?p ?wdx . ?p rdfs:subPropertyOf enpkg:has_wd_id .
+        ?extract ?p1 ?lcms . ?p1 rdfs:subPropertyOf enpkg:has_LCMS .
+        ?lcms ?p2 ?feature_list . ?p2 rdfs:subPropertyOf enpkg:has_lcms_feature_list .
+          ?feature_list enpkg:has_lcms_feature ?feature .
+           ?feature ?p3 ?annotation . ?p3 rdfs:subPropertyOf enpkg:has_sirius_annotation .
+            ?annotation enpkg:has_InChIkey2D ?ik2d .
+             ?ik2d enpkg:has_smiles ?smiles ; 
+                   enpkg:is_InChIkey2D_of ?ik .
+              ?ik enpkg:has_wd_id ?wd_chem .
+        }
+      }
+      {
+            SERVICE <https://qlever.cs.uni-freiburg.de/api/wikidata> {
+                ?wdx wdt:P141 wd:Q719675 .
+                ?wdx wdt:P225 ?spname .
+            }
+      }
+      {
+              ?trySpName emi:inTaxon ?wdx .
+               ?trySpObs sosa:isSampleOf ?trySpName ;
+                         sosa:isFeatureOfInterestOf ?tryObId .
+              ?tryData sosa:isResultOf ?tryObId .
+              ?tryData rdfs:label ?tryDataLab .
+      }
+
+
+}
