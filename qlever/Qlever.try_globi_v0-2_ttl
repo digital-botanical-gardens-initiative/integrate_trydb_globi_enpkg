@@ -1,0 +1,30 @@
+# Qleverfile for Olympics, use with https://github.com/ad-freiburg/qlever-control
+#
+# qlever get-data  # downloads .zip file of size 13 MB, uncompressed to 323 MB 
+# qlever index     # takes ~10 seconds and ~1 GB RAM (on an AMD Ryzen 9 5900X)
+# qlever start     # starts the server (instant)
+
+[data]
+NAME              = try_globi
+FORMAT		  = ttl
+DESCRIPTION       = integrated data on try, and globi 
+
+[index]
+INPUT_FILES     = *.ttl.gz
+CAT_INPUT_FILES = gunzip -c ${INPUT_FILES}
+SETTINGS_JSON   = { "ascii-prefixes-only": false, "num-triples-per-batch": 100000 }
+
+[server]
+PORT               = 7035
+ACCESS_TOKEN       = ${data:NAME}_xxx
+MEMORY_FOR_QUERIES = 40G
+CACHE_MAX_SIZE     = 20G
+CACHE_MAX_SIZE_SINGLE_ENTRY = 5G
+TIMEOUT            = 90s
+
+[runtime]
+SYSTEM = docker
+IMAGE  = docker.io/adfreiburg/qlever:latest
+
+[ui]
+#UI_CONFIG = olympics
