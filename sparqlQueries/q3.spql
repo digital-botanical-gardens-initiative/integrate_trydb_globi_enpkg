@@ -1,5 +1,3 @@
-## List all metabolites produced by species with near threatened IUCN status 
-
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
@@ -9,10 +7,10 @@ PREFIX emi: <https://purl.org/emi#>
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 
-SELECT DISTINCT ?ik ?wd_chem ?wdx ?spname ?tryDataLab ?tryDataVal
+SELECT DISTINCT ?wdx ?trySpName ?tryDataLab ?tryDataVal
 WHERE
     {
-      { SELECT DISTINCT ?wdx ?ik ?wd_chem WHERE {
+      { SELECT DISTINCT ?wdx WHERE {
         ?material enpkg:has_lab_process ?extract ;
                 ?p ?wdx . ?p rdfs:subPropertyOf enpkg:has_wd_id .
         ?p1 rdfs:subPropertyOf enpkg:has_LCMS . ?extract ?p1 ?lcms .
@@ -23,14 +21,8 @@ WHERE
              ?ik2d enpkg:has_smiles ?smiles ; 
                    enpkg:is_InChIkey2D_of ?ik .
               ?ik enpkg:has_wd_id ?wd_chem .
+              VALUES ?wd_chem { wd:Q905703 }
         }
-      }
-      {
-
-           SERVICE <https://query.wikidata.org/sparql> {
-                ?wdx wdt:P141 wd:Q719675 .
-                ?wdx wdt:P225 ?spname .
-            }
       }
       {
               ?trySpName emi:inTaxon ?wdx .
@@ -38,7 +30,5 @@ WHERE
                          sosa:isFeatureOfInterestOf ?tryObId .
               ?tryData sosa:isResultOf ?tryObId .
               ?tryData rdfs:label ?tryDataLab ; rdf:val ?tryDataVal .
-                      FILTER(CONTAINS(?tryDataLab, "Seed dry mass"))
-                      FILTER (?tryDataVal > 99)
       }
-} LIMIT 300
+}
