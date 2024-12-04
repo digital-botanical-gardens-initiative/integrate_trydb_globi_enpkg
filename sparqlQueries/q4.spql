@@ -1,0 +1,35 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://purl.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT DISTINCT ?wdx ?loc ?lats ?longs
+WHERE
+    {
+      { SELECT DISTINCT ?wdx WHERE {
+        ?material enpkg:has_lab_process ?extract ;
+                ?p ?wdx . ?p rdfs:subPropertyOf enpkg:has_wd_id .
+        ?p1 rdfs:subPropertyOf enpkg:has_LCMS . ?extract ?p1 ?lcms .
+         ?p2 rdfs:subPropertyOf enpkg:has_lcms_feature_list . ?lcms ?p2 ?feature_list .
+          ?feature_list enpkg:has_lcms_feature ?feature .
+           ?p3 rdfs:subPropertyOf enpkg:has_sirius_annotation . ?feature ?p3 ?annotation .
+            ?annotation enpkg:has_InChIkey2D ?ik2d .
+             ?ik2d enpkg:has_smiles ?smiles ; 
+                   enpkg:is_InChIkey2D_of ?ik .
+              ?ik enpkg:has_wd_id ?wd_chem .
+              VALUES ?wd_chem { wd:Q82003735 }
+        }
+      }
+      {
+            ?source emi:inTaxon ?wdx .
+            ?intxn emi:hasSource ?source ;
+                   prov:atLocation ?loc .
+            ?loc wgs:lat ?lats ; wgs:long ?longs .
+      }
+} 
