@@ -1,0 +1,57 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX emi: <https://purl.org/emi#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX emiBox: <https://purl.org/emi/abox#>
+
+SELECT DISTINCT ?parasiteX_WD ?parasitoidX_WD ?hostPlant_WD ?wd_chem
+WHERE
+    {
+      { SELECT DISTINCT ?parasiteX_WD ?parasitoidX_WD ?hostPlant_WD
+      WHERE {
+      	    {
+	    ?intxn1 emi:hasSource ?parasiteX ; 
+	    	   emi:hasInteractionType ?intxnName1 .
+	    VALUES ?intxnName1 { emiBox:parasiteOf }
+	    ?parasiteX emi:inTaxon ?parasiteX_WD .
+	    FILTER (?parasiteX_WD != wd:NA)
+    	    }
+	    {
+	    ?intxn2 emi:hasTarget ?parasiteX ; 
+		   emi:hasSource ?parasitoidX ;
+	    	   emi:hasInteractionType ?intxnName2 .
+	    VALUES ?intxnName2 { emiBox:parasitoidOf }
+	    ?parasitoidX emi:inTaxon ?parasitoidX_WD .
+	    FILTER (?parasitoidX_WD != wd:NA)
+    	    }
+	    {
+	    ?intxn3 emi:hasSource ?parasitoidX ; 
+	    	   emi:hasTarget ?hostPlant ;
+	    	   emi:hasInteractionType ?intxnName3 .
+	    VALUES ?intxnName3 { emiBox:hasHost }
+	    ?hostPlant emi:inTaxon ?hostPlant_WD .
+	    FILTER (?hostPlant_WD != wd:NA)
+    	    }
+    	}
+      }
+      { SELECT DISTINCT ?hostPlant_WD ?wd_chem WHERE {
+	?material enpkg:has_lab_process ?extract ;
+ 		?p ?hostPlant_WD . ?p rdfs:subPropertyOf enpkg:has_wd_id .
+	?p1 rdfs:subPropertyOf enpkg:has_LCMS . ?extract ?p1 ?lcms .
+	 ?p2 rdfs:subPropertyOf enpkg:has_lcms_feature_list . ?lcms ?p2 ?feature_list .
+    	  ?feature_list enpkg:has_lcms_feature ?feature .
+	   ?p3 rdfs:subPropertyOf enpkg:has_sirius_annotation . ?feature ?p3 ?annotation .
+	    ?annotation enpkg:has_InChIkey2D ?ik2d .
+	     ?ik2d enpkg:has_smiles ?smiles ; 
+	     	   enpkg:is_InChIkey2D_of ?ik .
+	      ?ik enpkg:has_wd_id ?wd_chem .
+      	}
+       }
+
+} 
