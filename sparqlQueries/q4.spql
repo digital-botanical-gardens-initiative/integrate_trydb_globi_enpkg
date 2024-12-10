@@ -1,3 +1,5 @@
+## List of possible natural locations of plants and their interactions, which produce rac-PAF (platelet activating factor),  (wd:Q82003735), that is produced in and can trigger inflammatory responses in humans. Also known to be produced by plants, but not enough studies performed in this direction.
+
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>

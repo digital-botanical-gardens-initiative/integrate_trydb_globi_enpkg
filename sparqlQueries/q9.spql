@@ -1,3 +1,6 @@
+## A list of chemicals produced by plants inhabiting parasatoids harmful for insects living as parasites on agricultural crops.
+
+
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX enpkg: <https://enpkg.commons-lab.org/kg/>

@@ -1,4 +1,5 @@
-## List all metabolites produced by species with near threatened IUCN status 
+## List all metabolites produced by species with near threatened IUCN status and with values available (or greater than a specific value) for trait “Seed dry mass”.
+
 
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
