@@ -1,4 +1,4 @@
-## List interactions and traits of all species which have an IUCN status of near threatened. wdt:P141 wd:Q719675.
+## List interactions and traits of all species which have an IUCN status (wdt:P141) of near threatened (wd:Q719675).
 
 
 PREFIX emi: <https://purl.org/emi#>
